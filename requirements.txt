@@ -1,8 +1,8 @@
-torch
-torchvision
-streamlit
-numpy
-pillow
-matplotlib
-nltk
-pyyaml
+torch==1.12.1+cu113
+torchvision==0.13.1
+streamlit==1.25.0
+numpy==1.24.4
+pillow==9.5.0  
+matplotlib==3.7.1
+nltk==3.8.1
+pyyaml==6.0.1
