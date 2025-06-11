@@ -22,7 +22,7 @@ class RSICD(torch.utils.data.Dataset):
 
     def __init__(
         self,
-        root: str = ".data/rsicd",
+        root: str = "data",
         split: str = "train",
         transform: T.Compose = T.Compose([T.ToTensor()])
     ):
