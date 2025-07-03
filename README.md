@@ -28,4 +28,4 @@ Focused on model comparison and caption quality
 
 Evaluation will include standard captioning metrics (BLEU, CIDEr, METEOR)
 
-Later extensions may explore vision-language pretraining or multimodal setups
+Later extensions may explore vision-language pretraining or multimodal setups.
