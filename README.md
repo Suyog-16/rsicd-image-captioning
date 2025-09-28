@@ -23,9 +23,28 @@ Each image is annotated with 5 human-written captions
 
 Covers diverse land types: urban, forest, water, farmland, and more
 
+# Sample Outputs
+<p align="center">
+  <img src="results/output_pond.png" alt="Result 1" width="60%"/>
+</p>
+
+<p align="center">
+  <img src="results/output.png" alt="Result 2" width="60%"/>
+</p>
+
+
+
+<!--## Quantitative Results
+
+| Model              | BLEU-1 | BLEU-2 | BLEU-3 | BLEU-4 | METEOR | CIDEr |
+|--------------------|--------|--------|--------|--------|--------|-------|
+| CNN + LSTM (Base)  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | x.xxx | 
+| CNN + Transformer  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | x.xxx |
+
+
+
 ### Scope
 Focused on model comparison and caption quality
 
 Evaluation will include standard captioning metrics (BLEU, CIDEr, METEOR)
 
-Later extensions may explore vision-language pretraining or multimodal setups.
