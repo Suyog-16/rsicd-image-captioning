@@ -1,36 +1,49 @@
-# RSICD Image Captioning Training Configuration
+# config.yaml - RSICD Image Captioning Training Configuration
 
-dataset:
-  name: RSICD
-  train_images: data/RSICD/train/images/
-  train_captions: data/RSICD/train/captions.json
-  val_images: data/RSICD/val/images/
-  val_captions: data/RSICD/val/captions.json
-  test_images: data/RSICD/test/images/
-  test_captions: data/RSICD/test/captions.json
-  vocab_path: data/RSICD/vocab.pkl
-  max_caption_length: 30
+project:
+  name: RSICD Image Captioning
+  description: Training configuration for RSICD image captioning model
+  author: Suyog
+  seed: 42
+
+data:
+  train_images: data/train/images/
+  train_annotations: data/train/annotations.json
+  val_images: data/val/images/
+  val_annotations: data/val/annotations.json
+  test_images: data/test/images/
+  test_annotations: data/test/annotations.json
+  image_size: 224
+  num_workers: 4
 
 model:
-  encoder: resnet50
-  encoder_pretrained: true
-  encoder_finetune: false
-  decoder: lstm
-  embedding_dim: 256
+  architecture: ImageCaptioningModel
+  encoder: efficientnet_b0
+  decoder: LSTM
+  pretrained: true
+  embedding_dim: 512
   hidden_dim: 512
-  num_layers: 1
-  dropout: 0.5
+  num_layers: 6
+  dropout: 0.1
 
 training:
-  batch_size: 64
-  num_epochs: 10
-  learning_rate: 0.001
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.0003
   optimizer: adam
   weight_decay: 0.0001
-  grad_clip: 5.0
-  seed: 42
-  device: cuda
+
+
+logging:
+ 
+  checkpoint_dir: checkpoints/
+  save_interval: 5
+  verbose: true
 
 evaluation:
   metrics: [BLEU, CIDEr]
- 
+  eval_interval: 1
+
+device:
+  use_cuda: true
+  gpu_id: 0
