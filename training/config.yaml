@@ -1,0 +1,36 @@
+# RSICD Image Captioning Training Configuration
+
+dataset:
+  name: RSICD
+  train_images: data/RSICD/train/images/
+  train_captions: data/RSICD/train/captions.json
+  val_images: data/RSICD/val/images/
+  val_captions: data/RSICD/val/captions.json
+  test_images: data/RSICD/test/images/
+  test_captions: data/RSICD/test/captions.json
+  vocab_path: data/RSICD/vocab.pkl
+  max_caption_length: 30
+
+model:
+  encoder: resnet50
+  encoder_pretrained: true
+  encoder_finetune: false
+  decoder: lstm
+  embedding_dim: 256
+  hidden_dim: 512
+  num_layers: 1
+  dropout: 0.5
+
+training:
+  batch_size: 64
+  num_epochs: 10
+  learning_rate: 0.001
+  optimizer: adam
+  weight_decay: 0.0001
+  grad_clip: 5.0
+  seed: 42
+  device: cuda
+
+evaluation:
+  metrics: [BLEU, CIDEr]
+ 
