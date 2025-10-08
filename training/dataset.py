@@ -1,9 +1,11 @@
-# Dataset class adapted from https://github.com/isaaccorley/torchrs 
+import torch
+from torch.utils.data import DataLoader
+# Dataset class adapted from authors https://github.com/isaaccorley/torchrs 
 import os
 import json
 from typing import List, Dict
 
-import torch
+
 import torchvision.transforms as T
 from PIL import Image
 
