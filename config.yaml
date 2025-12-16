@@ -1,0 +1,51 @@
+# config.yaml - RSICD Image Captioning Training Configuration
+
+project:
+  name: RSICD Image Captioning
+  description: Training configuration for RSICD image captioning model
+  author: Suyog
+  seed: 42
+
+data:
+  train_images: data/train/images/
+  train_annotations: data/train/annotations.json
+  val_images: data/val/images/
+  val_annotations: data/val/annotations.json
+  test_images: data/test/images/
+  test_annotations: data/test/annotations.json
+  image_size: 224
+  num_workers: 4
+
+model:
+  architecture: ImageCaptioningModel
+  encoder: efficientnet_b0
+  decoder: LSTM
+  pretrained: true
+  embedding_dim: 512
+  hidden_dim: 512
+  num_layers: 6
+  dropout: 0.1
+  encoded_dim: 1280
+
+
+training:
+  batch_size: 32
+  epochs: 10
+  learning_rate: 0.0003
+  optimizer: adam
+  weight_decay: 0.0001
+  seed: 42
+
+
+logging:
+  log_dir : runs/experiment_1
+  tb: true
+
+
+evaluation:
+  metrics: [BLEU, CIDEr]
+  eval_interval: 1
+
+device:
+  use_cuda: true
+  gpu_id: 0
