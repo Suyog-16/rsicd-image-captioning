@@ -19,8 +19,8 @@ from models.cnn_lstm_model import ImageCaptioningModel
 from utils.seeds import set_seed
 from utils.logging import save_config,create_writer
 from utils.load_configs import load_config
+from utils.preprocess import preprocess_fn,caption_to_indices,build_vocab
 from utils.collate_function import collate_fn
-from utils.preprocess import build_vocab
 from models.dataset import RSICD
 
 
@@ -64,6 +64,7 @@ val_loader = DataLoader(val_dataset,
 criterion = nn.CrossEntropyLoss(ignore_index=word2idx['<PAD>'])
 #----------------------Training Loop--------------------------------
 print(f"Starting training for {EPOCHS} epochs")
+print(f"Using {device}")
 
 
 for epoch in range(EPOCHS):
@@ -79,8 +80,7 @@ for epoch in range(EPOCHS):
         # Calculate output
         outputs = base_model(images,inputs)
         # Compute Loss
-        loss = criterion(outputs[:,1:,:].reshape(-1,vocab_len),
-                         targets.reshape(-1))
+        loss = criterion(outputs[:,1:,:].reshape(-1,vocab_len), targets.reshape(-1))
         optimizer.zero_grad()
         loss.backward()
         torch.nn.utils.clip_grad_norm_(base_model.parameters(),max_norm=1.0)
@@ -104,11 +104,7 @@ for epoch in range(EPOCHS):
             targets = captions[:,1:]
 
             outputs = base_model(images,inputs)
-
-            loss = criterion(
-                outputs[:, 1:, :].reshape(-1, vocab_len),
-                targets.reshape(-1)
-            )
+            loss = criterion(outputs[:,1:,:].reshape(-1,vocab_len), targets.reshape(-1))
             total_val_loss += loss.item()
             val_progress.set_postfix({"Batch Loss": f"{loss.item():.4f}"})
     avg_val_loss = total_val_loss / len(val_loader)
