@@ -1,6 +1,6 @@
 import torch
 from torch.nn.utils.rnn import pad_sequence
-from preprocess import preprocess_fn, caption_to_indices, build_vocab
+from .preprocess import preprocess_fn, caption_to_indices, build_vocab
 from models.dataset import RSICD
 import random
 
