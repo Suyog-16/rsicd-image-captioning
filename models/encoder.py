@@ -7,7 +7,7 @@ efficient_netb0 = models.efficientnet_b0(pretrained=True)
 
 class Encoder(nn.Module):
     def __init__(self,encoded_dim,projection_dim):
-        super().__init__(Encoder)
+        super().__init__()
         self.encoder = nn.Sequential(*list(efficient_netb0.children())[:-1])
         self.fc = nn.Linear(encoded_dim,projection_dim) # project to same dim as decoder embedding
 
