@@ -62,6 +62,12 @@ val_loader = DataLoader(val_dataset,
                         collate_fn=lambda batch: collate_fn(batch,word2idx))#use the same vica
 
 criterion = nn.CrossEntropyLoss(ignore_index=word2idx['<PAD>'])
+
+#----------------- Logging setup----------------------------------
+log_dir = "runs/experiment1"
+writer = create_writer(log_dir)
+save_config(config,log_dir)
+
 #----------------------Training Loop--------------------------------
 print(f"Starting training for {EPOCHS} epochs")
 print(f"Using {device}")
@@ -72,7 +78,7 @@ for epoch in range(EPOCHS):
     total_train_loss = 0
     train_progress = tqdm(train_loader,desc = f"Epoch {epoch+1}/{EPOCHS} Training",leave = False)
 
-    for images,captions in train_progress:
+    for batch_idx,(images,captions) in enumerate(train_progress):
         images,captions = images.to(device),captions.to(device)
         inputs = captions[:,:-1]
         targets = captions[:,1:] 
@@ -87,8 +93,13 @@ for epoch in range(EPOCHS):
         optimizer.step()
         total_train_loss += loss.item()
         train_progress.set_postfix({"Batch Loss": f"{loss.item():.4f}"})
+
+        # Batch-level logging
+        writer.add_scalar("Loss/Train_Batch", loss.item(), epoch * len(train_loader) + batch_idx)
+
     
     avg_train_loss = total_train_loss / len(train_loader)
+    writer.add_scalar("Loss/Train", avg_train_loss, epoch)
 
     # Validation 
     base_model.eval()
@@ -110,7 +121,9 @@ for epoch in range(EPOCHS):
     avg_val_loss = total_val_loss / len(val_loader)
 
     print(f"Epoch {epoch+1}/{EPOCHS} - Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
-
+    
+    
+    writer.add_scalar("Loss/Val", avg_val_loss, epoch)
     # Save checkpoint
 
     if(epoch + 1)%5 == 0 :
@@ -126,3 +139,4 @@ for epoch in range(EPOCHS):
         print(f"Checkpoint saved: {checkpoints_path}")
 
 print("Training completed")
+writer.close()
