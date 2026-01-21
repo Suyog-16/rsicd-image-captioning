@@ -1,50 +1,95 @@
-# RSICD(Remote Sensing Image Captioning Dataset) image captioning project
+Here’s a full professional GitHub-ready README in Markdown format, ready to paste into your repo:
 
-A deep learning project for generating natural language captions for remote sensing images using the RSICD dataset.
+````markdown
+# RSICD Remote Sensing Image Captioning Project
 
-This project explores the effectiveness of different encoder-decoder architectures in understanding and describing satellite imagery.
+This project focuses on generating natural language captions for remote sensing images using the **RSICD dataset**. It investigates the performance of different encoder-decoder architectures in understanding and describing aerial imagery.
 
-### Objective
-To build models that can generate accurate and meaningful captions for aerial images, and compare different decoding strategies:
+## Objective
+Develop and evaluate models capable of generating accurate, meaningful captions for satellite images. The project specifically compares:
 
-- CNN + LSTM
-Classic encoder-decoder approach using convolutional features and recurrent sequence modeling.
+- **CNN + LSTM**: Classic encoder-decoder approach using convolutional feature extraction and recurrent sequence modeling.  
+- **CNN + Transformer**: Combines convolutional visual encoders with attention-based Transformer decoders to capture richer contextual information.
 
-- CNN + Transformer
-Combines convolutional visual encoders with attention-based language decoders for improved context handling.
+## Dataset
 
-### Dataset
+**RSICD (Remote Sensing Image Caption Dataset)**  
 
-RSICD (Remote Sensing Image Caption Dataset)
+- ~10,000 high-resolution images  
+- Each image annotated with **5 human-written captions**  
+- Covers diverse land cover types: urban areas, forests, water bodies, farmland, and more  
 
-~10,000 high-resolution images
+## Installation
 
-Each image is annotated with 5 human-written captions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/rsicd-captioning.git
+   cd rsicd-captioning
+````
 
-Covers diverse land types: urban, forest, water, farmland, and more
+2. Create a Python virtual environment (optional but recommended):
 
-# Sample Outputs
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Download and place the RSICD dataset in the `data/` directory. Follow dataset instructions [here](https://github.com/xjtushilei/RSICD).
+
+## Usage
+
+### Training
+
+```bash
+python train.py --model cnn_lstm --epochs 50 --batch_size 32
+python train.py --model cnn_transformer --epochs 50 --batch_size 32
+```
+
+### Inference
+
+```bash
+python infer.py --image_path path/to/image.jpg --model_path path/to/model.pth
+```
+
+### Evaluation
+
+```bash
+python evaluate.py --model_path path/to/model.pth --metric BLEU,CIDEr,METEOR
+```
+
+## Sample Outputs
+
 <p align="center">
-  <img src="results/output_pond.png" alt="Result 1" width="60%"/>
+  <img src="results/output_pond.png" alt="Sample Output 1" width="60%"/>
 </p>
 
 <p align="center">
-  <img src="results/output.png" alt="Result 2" width="60%"/>
+  <img src="results/output.png" alt="Sample Output 2" width="60%"/>
 </p>
 
+## Evaluation Metrics
+### - CNN + LSTM
 
+   **BLEU= 0.34**: Low due to BLEU’s sensitivity to exact word matches.
 
-<!--## Quantitative Results
+   **CIDEr = 0.81**: High, indicating captions are semantically correct and capture key content.
 
-| Model              | BLEU-1 | BLEU-2 | BLEU-3 | BLEU-4 | METEOR | CIDEr |
-|--------------------|--------|--------|--------|--------|--------|-------|
-| CNN + LSTM (Base)  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | x.xxx | 
-| CNN + Transformer  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | 0.xxx  | x.xxx |
+   Interpretation: The model generates meaningful and descriptive captions, even if the wording differs from reference captions.
 
+   Takeaway: CIDEr is a better indicator of performance for RSICD than BLEU.
+<br>
 
+### CNN + Transformer - N/A
 
-### Scope
-Focused on model comparison and caption quality
+## Scope
 
-Evaluation will include standard captioning metrics (BLEU, CIDEr, METEOR)
+The project emphasizes:
+
+* Comparing encoder-decoder architectures for remote sensing image captioning
+* Evaluating caption quality using standard metrics
+* Serving as a foundation for future improvements such as multimodal models or pretraining on larger datasets
 
