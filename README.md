@@ -1,6 +1,3 @@
-Here’s a full professional GitHub-ready README in Markdown format, ready to paste into your repo:
-
-````markdown
 # RSICD Remote Sensing Image Captioning Project
 
 This project focuses on generating natural language captions for remote sensing images using the **RSICD dataset**. It investigates the performance of different encoder-decoder architectures in understanding and describing aerial imagery.
