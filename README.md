@@ -20,9 +20,10 @@ Develop and evaluate models capable of generating accurate, meaningful captions 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/rsicd-captioning.git
+   git clone https://github.com/Suyog-16/rsicd-image-captioning.git
    cd rsicd-captioning
-````
+   ```
+
 
 2. Create a Python virtual environment (optional but recommended):
 
@@ -35,9 +36,9 @@ Develop and evaluate models capable of generating accurate, meaningful captions 
    ```bash
    pip install -r requirements.txt
    ```
-4. Download and place the RSICD dataset in the `data/` directory. Follow dataset instructions [here](https://github.com/xjtushilei/RSICD).
+<!-- 4. Download and place the RSICD dataset in the `data/` directory. Follow dataset instructions [here](https://github.com/xjtushilei/RSICD). -->
 
-## Usage
+<!-- ## Usage
 
 ### Training
 
@@ -56,7 +57,7 @@ python infer.py --image_path path/to/image.jpg --model_path path/to/model.pth
 
 ```bash
 python evaluate.py --model_path path/to/model.pth --metric BLEU,CIDEr,METEOR
-```
+``` -->
 
 ## Sample Outputs
 
