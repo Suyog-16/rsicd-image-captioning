@@ -1,0 +1,53 @@
+{
+  "checkpoint": "checkpoints/final_model.pt",
+  "test_set_size": 1093,
+  "bleu_scores": {
+    "BLEU1": 30.02412941601142,
+    "BLEU2": 12.391146759234033,
+    "BLEU3": 6.129228081719465,
+    "BLEU4": 3.8245953332894738
+  },
+  "cider_score": 76.3185061173968,
+  "sample_captions": [
+    {
+      "generated": "some planes are in an airport near some buildings .",
+      "reference": "the airport is very large ."
+    },
+    {
+      "generated": "a football field is near several buildings and green trees .",
+      "reference": "green grass on both sides of the runway ."
+    },
+    {
+      "generated": "some planes are parked in an airport .",
+      "reference": "the airport has a lot of white planes ."
+    },
+    {
+      "generated": "many planes are parked in an airport .",
+      "reference": "many white planes were parked at the airport ."
+    },
+    {
+      "generated": "many planes are parked in an airport .",
+      "reference": "a large number of houses were built at the airport ."
+    },
+    {
+      "generated": "some planes are parked in an airport .",
+      "reference": "there are a lot of bare land near the airport ."
+    },
+    {
+      "generated": "a large number of white storage tanks are near a road .",
+      "reference": "the two drop shaped terminal buildings are surrounded by planes on the tarmac which is adjacent to a runway with four oval lawns in it ."
+    },
+    {
+      "generated": "some planes are parked in an airport .",
+      "reference": "there are several planes on the <UNK> ."
+    },
+    {
+      "generated": "a large number of white planes are parked in an airport .",
+      "reference": "many white planes are parked at the airport ."
+    },
+    {
+      "generated": "some planes are parked in an airport .",
+      "reference": "many trees were planted around the airport ."
+    }
+  ]
+}

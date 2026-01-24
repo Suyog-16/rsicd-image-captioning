@@ -1,0 +1,53 @@
+{
+  "checkpoint": "checkpoints/model_epoch_10.pt",
+  "test_set_size": 1093,
+  "bleu_scores": {
+    "BLEU1": 30.911447593655527,
+    "BLEU2": 12.948458295203439,
+    "BLEU3": 7.006832944597495,
+    "BLEU4": 4.2382085344542
+  },
+  "cider_score": 82.50183806954325,
+  "sample_captions": [
+    {
+      "generated": "some planes are parked near a terminal in an airport .",
+      "reference": "the airport is very large ."
+    },
+    {
+      "generated": "several buildings and green trees are near a large stadium .",
+      "reference": "green grass on both sides of the runway ."
+    },
+    {
+      "generated": "some planes are parked near a terminal in an airport .",
+      "reference": "the airport has a lot of white planes ."
+    },
+    {
+      "generated": "many planes are parked near a terminal in an airport .",
+      "reference": "many white planes were parked at the airport ."
+    },
+    {
+      "generated": "many planes are parked near a building in an airport .",
+      "reference": "a large number of houses were built at the airport ."
+    },
+    {
+      "generated": "many planes are parked near a terminal in an airport .",
+      "reference": "there are a lot of bare land near the airport ."
+    },
+    {
+      "generated": "many planes are parked near a terminal in an airport .",
+      "reference": "the two drop shaped terminal buildings are surrounded by planes on the tarmac which is adjacent to a runway with four oval lawns in it ."
+    },
+    {
+      "generated": "two planes are parked in an airport near a parking lot .",
+      "reference": "there are several planes on the <UNK> ."
+    },
+    {
+      "generated": "several planes are parked near a terminal in an airport .",
+      "reference": "many white planes are parked at the airport ."
+    },
+    {
+      "generated": "some planes are parked near a terminal in an airport .",
+      "reference": "many trees were planted around the airport ."
+    }
+  ]
+}
