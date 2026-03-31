@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from torchvision import models
 
-efficient_netb0 = models.efficientnet_b0(pretrained=True)
+efficient_netb0 = models.efficientnet_b0(weights=models.EfficientNet_B0_Weights.DEFAULT)
 
 
 class Encoder(nn.Module):
