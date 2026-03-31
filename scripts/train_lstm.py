@@ -50,6 +50,9 @@ optimizer = torch.optim.Adam(base_model.parameters(),lr = learning_rate)
 train_dataset = RSICD(root="data",split='train')
 all_train_captions = [cap for item in train_dataset for cap in item['captions']]
 word2idx, idx2word = build_vocab(all_train_captions, min_freq=2)
+os.makedirs("checkpoints", exist_ok=True)
+with open("checkpoints/vocab_minfreq2.json", "w") as f:
+    json.dump({"word2idx": word2idx}, f, indent=2)
 train_loader = DataLoader(train_dataset,
                           batch_size=BATCH_SIZE,
                           shuffle=True,
@@ -133,6 +136,7 @@ for epoch in range(EPOCHS):
             'epoch':epoch,
             'model_state_dict':base_model.state_dict(),
             'optimizer_state_dict':optimizer.state_dict(),
+            'word2idx': word2idx,
             'train_loss': avg_train_loss,
             'val_loss':avg_val_loss,
         },checkpoints_path)

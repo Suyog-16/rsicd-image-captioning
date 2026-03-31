@@ -1,13 +1,10 @@
 import torch
-from torch.utils.data import DataLoader
 # Dataset class adapted from authors https://github.com/isaaccorley/torchrs 
 import os
 import json
-from typing import List, Dict
+from typing import List, Dict, Callable, Optional
 
-
-import torchvision.transforms as T
-from PIL import Image
+from torchvision.io import read_image, ImageReadMode
 
 
 class RSICD(torch.utils.data.Dataset):
@@ -26,7 +23,7 @@ class RSICD(torch.utils.data.Dataset):
         self,
         root: str = "data",
         split: str = "train",
-        transform: T.Compose = T.Compose([T.ToTensor()])
+        transform: Optional[Callable] = None,
     ):
         assert split in self.splits
         self.root = root
@@ -46,8 +43,9 @@ class RSICD(torch.utils.data.Dataset):
     def __getitem__(self, idx: int) -> Dict:
         captions = self.captions[idx]
         path = os.path.join(self.root, self.image_root, captions["filename"])
-        x = Image.open(path).convert("RGB")
-        x = self.transform(x)
+        x = read_image(path, mode=ImageReadMode.RGB).float().div(255.0)
+        if self.transform is not None:
+            x = self.transform(x)
         sentences = [sentence["raw"] for sentence in captions["sentences"]]
         return dict(x=x, captions=sentences)
 
