@@ -19,7 +19,7 @@ data:
 model:
   architecture: ImageCaptioningModel
   encoder: efficientnet_b0
-  decoder: LSTM
+  decoder: Transformer
   pretrained: true
   embedding_dim: 512
   hidden_dim: 512
@@ -27,20 +27,18 @@ model:
   dropout: 0.1
   encoded_dim: 1280
 
-
 training:
   batch_size: 32
   epochs: 10
   learning_rate: 0.0003
-  optimizer: adam
+  optimizer: adamw
   weight_decay: 0.0001
   seed: 42
-
+  label_smoothing: 0.1
 
 logging:
-  log_dir : runs/experiment_1
+  log_dir: runs/experiment_1
   tb: true
-
 
 evaluation:
   metrics: [BLEU, CIDEr]
