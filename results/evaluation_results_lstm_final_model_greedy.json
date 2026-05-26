@@ -1,0 +1,138 @@
+{
+  "checkpoint": "checkpoints/final_model.pt",
+  "vocab_source": "rebuilt_from_train_split",
+  "decode": {
+    "method": "greedy",
+    "max_length": 30,
+    "beam_size": null,
+    "length_penalty": null
+  },
+  "counts": {
+    "num_images": 1093,
+    "num_reference_sets": 1093
+  },
+  "metrics": {
+    "BLEU1": 0.5998014542611868,
+    "BLEU2": 0.43869703444474567,
+    "BLEU3": 0.34427184644915226,
+    "BLEU4": 0.27969281384554073,
+    "CIDEr": 0.6428791633848945,
+    "BLEU1_percent": 59.98014542611868,
+    "BLEU2_percent": 43.86970344447457,
+    "BLEU3_percent": 34.42718464491523,
+    "BLEU4_percent": 27.969281384554073,
+    "CIDEr_percent": 64.28791633848945
+  },
+  "samples": [
+    {
+      "sample_id": 0,
+      "generated": "some planes are in an airport near some buildings.",
+      "references": [
+        "the airport is very large.",
+        "next to the airport is green grass.",
+        "next to the airport is green grass.",
+        "the airport is very large.",
+        "the airport is very large."
+      ]
+    },
+    {
+      "sample_id": 1,
+      "generated": "a football field is near several buildings and green trees.",
+      "references": [
+        "green grass on both sides of the runway.",
+        "the aircraft parked on the tarmac white.",
+        "the aircraft parked on the tarmac white.",
+        "green grass on both sides of the runway.",
+        "green grass on both sides of the runway."
+      ]
+    },
+    {
+      "sample_id": 2,
+      "generated": "some planes are parked in an airport.",
+      "references": [
+        "there are a lot of bare land around the airport.",
+        "the airport has a lot of white planes.",
+        "the airport has a lot of white planes.",
+        "there are a lot of bare land around the airport.",
+        "there are a lot of bare land around the airport."
+      ]
+    },
+    {
+      "sample_id": 3,
+      "generated": "many planes are parked in an airport.",
+      "references": [
+        "there are many bare land near the airport.",
+        "many white planes were parked at the airport.",
+        "many white planes were parked at the airport.",
+        "there are many bare land near the airport.",
+        "there are many bare land near the airport."
+      ]
+    },
+    {
+      "sample_id": 4,
+      "generated": "many planes are parked in an airport.",
+      "references": [
+        "the airport covers a large area and has a lot of planes.",
+        "a large number of houses were built at the airport.",
+        "a large number of houses were built at the airport.",
+        "the airport covers a large area and has a lot of planes.",
+        "the airport covers a large area and has a lot of planes."
+      ]
+    },
+    {
+      "sample_id": 5,
+      "generated": "some planes are parked in an airport.",
+      "references": [
+        "a large number of aircraft were parked at the back of the airport.",
+        "there are a lot of bare land near the airport.",
+        "there are a lot of bare land near the airport.",
+        "a large number of aircraft were parked at the back of the airport.",
+        "a large number of aircraft were parked at the back of the airport."
+      ]
+    },
+    {
+      "sample_id": 6,
+      "generated": "a large number of white storage tanks are near a road.",
+      "references": [
+        "the two drop shaped terminal buildings are surrounded by planes on the tarmac which is adjacent to a runway with four oval lawns in it.",
+        "the two drop shaped terminal buildings are surrounded by planes on the tarmac which is adjacent to a runway with four oval lawns in it.",
+        "some planes stop in the drop shaped terminal and a wide runway.",
+        "the c shaped termial building sits on the apron which is alongside the runways.",
+        "some planes are near a building in an airport."
+      ]
+    },
+    {
+      "sample_id": 7,
+      "generated": "some planes are parked in an airport.",
+      "references": [
+        "there are several planes on the airfield.",
+        "the airport is very spacious.",
+        "the airport is very spacious.",
+        "there are several planes on the airfield.",
+        "there are several planes on the airfield."
+      ]
+    },
+    {
+      "sample_id": 8,
+      "generated": "a large number of white planes are parked in an airport.",
+      "references": [
+        "many white planes are parked at the airport.",
+        "some trees were planted around the airport.",
+        "some trees were planted around the airport.",
+        "many white planes are parked at the airport.",
+        "many white planes are parked at the airport."
+      ]
+    },
+    {
+      "sample_id": 9,
+      "generated": "some planes are parked in an airport.",
+      "references": [
+        "many trees were planted around the airport.",
+        "the airport covers a large area and has built an airstrip.",
+        "the airport covers a large area and has built an airstrip.",
+        "many trees were planted around the airport.",
+        "many trees were planted around the airport."
+      ]
+    }
+  ]
+}

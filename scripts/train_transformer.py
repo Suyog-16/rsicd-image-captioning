@@ -24,7 +24,7 @@ config = load_config("config.yaml")
 #---------- Making it Device agnostic---------------------------------
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-
+print(config)
 #----------------------- Model Defination -------------------------
 Encoded_dim = config["model"]["encoded_dim"]
 Projected_dim = config["model"]["embedding_dim"]
@@ -41,10 +41,17 @@ decoder = Decoder(
 base_model = ImageCaptioningModel(encoder, decoder).to(device)
 
 #----------------------- Loss functions, optimizers and logging------------------
-EPOCHS = config["training"]["epochs"]
-learning_rate = config["training"]["learning_rate"]
-BATCH_SIZE = config["training"]["batch_size"]
-optimizer = torch.optim.Adam(base_model.parameters(), lr=learning_rate)
+EPOCHS = config["training"]["epochs"] #10
+learning_rate = config["training"]["learning_rate"]# 0.0003
+BATCH_SIZE = config["training"]["batch_size"]#32
+WEIGHT_DECAY = config["training"]['weight_decay']#-0.0001
+LABEL_SMOOTHING = config["training"]['label_smoothing']
+optimizer = torch.optim.AdamW(base_model.parameters(), lr=learning_rate,weight_decay=WEIGHT_DECAY)
+warmup_epoch = 2
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+    optimizer,
+    T_max=EPOCHS -warmup_epoch
+)
 
 #--------------- Dataset Class Adapted from authors : https://github.com/isaaccorley/torchrs --------
 train_dataset = RSICD(root="data", split="train")
@@ -68,7 +75,7 @@ val_loader = DataLoader(
 	collate_fn=lambda batch: collate_fn(batch, word2idx),
 )  # use the same vocab
 
-criterion = nn.CrossEntropyLoss(ignore_index=word2idx["<PAD>"])
+criterion = nn.CrossEntropyLoss(ignore_index=word2idx["<PAD>"],label_smoothing = LABEL_SMOOTHING )
 
 #----------------- Logging setup----------------------------------
 log_dir = "runs/experiment_transformer"
@@ -105,6 +112,8 @@ for epoch in range(EPOCHS):
 
 	avg_train_loss = total_train_loss / len(train_loader)
 	writer.add_scalar("Loss/Train", avg_train_loss, epoch)
+	if epoch > warmup_epoch:
+		scheduler.step()
 
 	# Validation
 	base_model.eval()
@@ -137,7 +146,7 @@ for epoch in range(EPOCHS):
 
 	# Save checkpoint
 	if (epoch + 1) % 5 == 0:
-		checkpoints_path = f"checkpoints/transformer_model_epoch_{epoch+1}.pt"
+		checkpoints_path = f"checkpoints/_final_ transformer_model_epoch_{epoch+1}.pt"
 		os.makedirs("checkpoints", exist_ok=True)
 		torch.save(
 			{

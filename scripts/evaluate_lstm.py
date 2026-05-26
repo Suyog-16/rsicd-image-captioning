@@ -72,7 +72,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--length_penalty",
         type=float,
-        default=0.0,
+        default=0.6,
         help="Beam-search length penalty alpha (0 disables normalization)",
     )
     parser.add_argument(
