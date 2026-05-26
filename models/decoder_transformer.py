@@ -7,7 +7,7 @@ class Decoder(nn.Module):
 		self,
 		embed_dim,
 		vocab_size,
-		num_layers=6,
+		num_layers=3,
 		num_heads=8,
 		ff_dim=2048,
 		dropout=0.1,
